@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+        <link rel="stylesheet" href="../style.css" type="text/css">
+    </head>
+    <body>
+        <div id="first" class="container">
+            <div class="container-form" >
+            <div class="formreg" style="height: 500px;">
+                <form name="registration"  method="post" action="/register">
+                    <div class="form-head">REGISTRATION FORM</div>
+                    <div class="input-div">
+                        <input type="text" class="input-text" name="id" tabindex="1" placeholder="Enter your id"/>
+                        <span id="errorname"></span>
+                    </div>
+                    <div class="input-div">
+                        <input type="text" class="input-text" name="name" tabindex="2" placeholder="Emter your name"/>
+                        <span id="errorname1"></span>
+                    </div>
+                    
+                    <div class="input-div">
+                        <input type="email" class="input-text" name="email" tabindex="4" placeholder="Email Id"/>
+                        <span id="errorname3"></span>
+                    </div>
+                    <div class="input-div">
+                      <input type="password" class="input-text" name="password" tabindex="3" placeholder="Enter your password"/>
+                      <span id="errorname2"></span>
+                  </div>
+                    <div class="input-div">
+                        <input type="text" class="input-text" name="role" tabindex="5" placeholder="Enter your role"/>
+                    </div>
+                       
+                    <div class="input-div">
+                        <input type="submit" tabindex="9" class="div-btn" name="submit" value="REGISTER"/>
+                    </div>
+                    <div class="input-div">
+                      <a href="/login" style="text-decoration: none;">Do you want to login?</a>
+                    </div>
+                
+                </form>
+                
+            </div>
+        </div>
+        
+        </div>
+    </body>
+</html>

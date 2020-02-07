@@ -2,11 +2,16 @@ const jwt = require('jsonwebtoken');
 const User = require('../model/userModel');
 const config = require('../config');
 
+exports.getRegister = function (req, res) {
+  res.render('register');
+}
+
 exports.register = async function (req, res) {
   const createUser = new User(req.body);
-  await createUser.save(function (err, User) {
-    res.status(200).send({ status: true, token: createUser });
-  });
+  await createUser.save();
+  const token = jwt.sign({ id: createUser.id, role: createUser.role, name: createUser.name }, config.secret);
+  res.cookie('token',token, {httpOnly: true });
+  res.redirect('/dash');
 }
 
 exports.getLogin = function (req, res) {
