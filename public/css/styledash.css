@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+.container{
+  display:flex;
+  flex-wrap: wrap;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.home{
+  width:1300px;
+  height:670px; 
+}
+.logo{
+  display:flex;
+  justify-content: flex-start;
+  margin-left: 40px;
+  columns: #000000;; 
+  font-size:30px;
+  font-weight: bold;
+  padding-top:25px;
+}
+.home_md
+{
+    display: flex;
+    justify-content: center;
+    color:black; 
+    font-size:40px; 
+    padding-top: 200px;
+}

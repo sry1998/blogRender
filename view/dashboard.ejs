@@ -2,12 +2,20 @@
 <html>
  <head>
    <title>Dashboard</title>
+   <link rel="stylesheet" href="../styledash.css">
  </head>
  <body>
-   <div class="container">
-     <h1>
-       WELCOME <%= name %>
-     </h1>
-   </div>
+    <div>
+    <!--Home-->
+   <div>
+            
+          <%- include('nav.ejs') %>
+          
+       </div>
+    <div name="home" class="home">
+       
+            <div class="home_md">WELCOME <%= name %></div>
+    </div>
+    </div>
  </body>
 </html>

@@ -1,0 +1,39 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(10, 8, 8);
+}
+
+li {
+  float: left;
+  line-height: 25px;
+}
+
+li a {
+
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.active {
+  color: darkorange;
+}
+li:hover {
+  background-color:orange;
+}
+.active:hover {
+  color: white;
+}
+.content-right {
+  float: right;
+}
+
+.navbar-brand {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 30px;
+}

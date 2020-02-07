@@ -4,10 +4,11 @@ exports.addPost = async function (req, res) {
   const createPost = new postModel(req.body);
   createPost.userid = req.id;
   try {
-    const ans = await createPost.save();
-    res.send(ans);
+    await createPost.save();
+    const msg = "Post added succesfully"
+    res.render('addpost', { msg: msg });
   } catch (err) {
-    res.status(500).end(err);
+    res.status(500).send(err);
   }
 }
 
@@ -27,7 +28,11 @@ exports.getPost = async function (req, res) {
 }
 
 exports.getDashboard = function (req, res) {
-  res.render('dashboard', {name:req.name});
+  res.render('dashboard', { name: req.name });
+}
+
+exports.getAddPost = function (req, res) {
+  res.render('addpost', { msg: "" });
 }
 
 
