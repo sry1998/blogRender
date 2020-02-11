@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../styledash.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../getpost.css">
+</head>
+<body>
+  <div> 
+    <!--Home-->
+    <div> <%- include('nav.ejs') %> </div>
+    <div name="home" class="home">
+       <div class="viewpost">   
+          <% for(let i = 0; i < post.length; i++) { %>
+            <div class="card">
+              <h2><%= post[i].title %></h2>
+              <p><%= post[i].content %></p>
+            </div>
+          <%}
+          %>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
