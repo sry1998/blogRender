@@ -27,3 +27,8 @@ exports.login = async function(req, res) {
   res.redirect('/dash');
   });
 };
+
+
+exports.logout = function(req, res) {
+  res.clearCookie('token').redirect('/login');
+}
