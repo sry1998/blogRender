@@ -18,6 +18,8 @@ router.get('/post', postController.getAddPost);
 
 router.post('/post',  middleware.verifyToken, postController.addPost);
 
-router.get('/post', middleware.verifyToken, postController.getPost);
+router.get('/posts', middleware.verifyToken, postController.getPost);
+
+router.get('/logout', userController.logout);
 
 module.exports =  router;     

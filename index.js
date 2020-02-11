@@ -23,7 +23,6 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-//app.use(express.json());
 app.use(router);
 
 app.listen(port, hostname, () => {
