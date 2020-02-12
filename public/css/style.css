@@ -50,6 +50,12 @@
   border:2px solid gray;
 }
 
+textarea {
+  width:300px;
+  border-radius: 5px;
+  border:2px solid gray;
+}
+
 .div-btn {
   margin-top: 20px;
   background-color: darkorange;

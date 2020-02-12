@@ -12,8 +12,9 @@ exports.register = async function (req, res) {
   try{
     const createUser = new User(req.body);
     createUser.password = await bcrypt.hash(req.body.password, 10);
+    createUser.role = "User"
     await createUser.save();
-    const token = jwt.sign({ id: createUser.id, role: createUser.role, name: createUser.name }, config.secret);
+    const token = jwt.sign({ id: createUser._id, role: createUser.role, name: createUser.name }, config.secret);
     res.cookie('token',token, {httpOnly: true });
     res.redirect('/dash');
   } 
@@ -33,7 +34,7 @@ exports.login = async function(req, res) {
       if (!User) return res.status(404).send('No user found.');
       const match = bcrypt.compareSync(req.body.password, User.password);
       if(match) {
-        const token = jwt.sign({ id: User.id, role: User.role, name: User.name }, config.secret);
+        const token = jwt.sign({ id: User._id, role: User.role, name: User.name }, config.secret);
         res.cookie('token',token, {httpOnly: true });
         res.redirect('/dash');
       }
@@ -45,8 +46,7 @@ exports.login = async function(req, res) {
   }
   catch (err) {
     res.status(500).send(err);
-  }
-  
+  } 
 };
 
 exports.logout = function(req, res) {

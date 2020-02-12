@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema({
     lowercase: true
   },
   userid: {
-    type: Number,
+    type: String,
     required: false,
     trim: false
   }
