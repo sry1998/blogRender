@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Dashboard</title>
+  <title>Add Post</title>
   <link rel="stylesheet" href="../styledash.css">
   <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
   <div> 
-    <!--Home-->
     <div> <%- include('nav.ejs') %> </div>
     <div name="home" class="home">
-      <% if(msg) {%>
-      <h6><%= msg %></h6>
-      <% } %>
       <div class="formreg" style="margin-left: 25%; margin-top: 10%;">
         <form method="post" action="/post">
           <div class="form-head">ADD POST</div>
+          <% if(msg) {%>
+            <span class="successmsg"> <%= msg %> </span>
+          <% } %>
           <div class="input-div">
             <input type="text" class="input-text" name="title" placeholder="Enter title" />
           </div>
@@ -32,5 +29,4 @@
     </div>
   </div>
 </body>
-
 </html>
