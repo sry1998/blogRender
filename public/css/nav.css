@@ -20,15 +20,19 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
+
 .active {
   color: darkorange;
 }
+
 li:hover {
   background-color:orange;
 }
+
 .active:hover {
   color: white;
 }
+
 .content-right {
   float: right;
 }
