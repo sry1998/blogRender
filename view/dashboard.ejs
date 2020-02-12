@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html>
- <head>
-   <title>Dashboard</title>
-   <link rel="stylesheet" href="../styledash.css">
- </head>
- <body>
-    <div>
-    <!--Home-->
+<head>
+<title>Home</title>
+<link rel="stylesheet" href="../styledash.css">
+</head>
+<body>
    <div>
-            
-          <%- include('nav.ejs') %>
-          
-       </div>
-    <div name="home" class="home">
-       
-            <div class="home_md">WELCOME <%= name %></div>
+      <div>
+         <%- include('nav.ejs') %> 
+      </div>
+      <div name="home" class="home">
+         <div class="home_md"> WELCOME <%= name %> </div>
+      </div>
     </div>
-    </div>
- </body>
+</body>
 </html>

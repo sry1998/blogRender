@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="../style.css">
-  </head>
-  <body> 
-    <div class="container">
-      <div class="container-form">
-        <div class="formreg">
-          <form method="post" action="/login">
-            <div class="form-head">LOGIN FORM</div>
-            <% if(errormsg) { %>
-              <div class="msg">
-                <span><%= errormsg%></span>
-              </div>
-              <% } %>
-            <div class="input-div">
-              <input type="email" class="input-text" name="email" placeholder="Enter your email"/>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body> 
+  <div class="container">
+    <div class="container-form">
+      <div class="formreg">
+        <form method="post" action="/login">
+          <div class="form-head">LOGIN</div>
+          <% if(errormsg) { %>
+            <div class="msg">
+              <span><%= errormsg%></span>
             </div>
-            <div class="input-div">
-              <input type="password" class="input-text"   name="password" placeholder="Enter your password"/>
-            </div>
-            <div class="input-div">
-              <input  name="submit" class="div-btn" type="submit" value="Login"/>
-            </div>
-            <div class="input-div">
-              <a href="/register" style="text-decoration: none;">Already registered?</a>
-            </div>
-          </form>
-        </div>
+          <% } %>
+          <div class="input-div">
+            <input type="email" class="input-text" name="email" placeholder="Enter your email"/>
+          </div>
+          <div class="input-div">
+            <input type="password" class="input-text"   name="password" placeholder="Enter your password"/>
+          </div>
+          <div class="input-div">
+            <input  name="submit" class="div-btn" type="submit" value="Login"/>
+          </div>
+          <div class="input-div">
+            <a href="/register" style="text-decoration: none;">Already registered?</a>
+          </div>
+        </form>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>

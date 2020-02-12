@@ -7,10 +7,8 @@
   <link rel="stylesheet" href="../getpost.css">
 </head>
 <body>
-  <div> 
-    <!--Home-->
     <div> <%- include('nav.ejs') %> </div>
-    <div name="home" class="home">
+    <div class="home">
        <div class="viewpost">   
           <% for(let i = 0; i < post.length; i++) { %>
             <div class="card">
@@ -21,7 +19,5 @@
           %>
       </div>
     </div>
-  </div>
 </body>
-
 </html>
