@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const session = require('express-session');
+const flash = require('req-flash');
 const cookieParser = require("cookie-parser");
 const bodyParser = require('body-parser');
 
@@ -23,6 +25,12 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'djhxcvxfgshajfgjhgsjhfgsakjeauytsdfy',
+  resave: false,
+  saveUninitialized: true
+  }));
+app.use(flash());
 app.use(router);
 
 app.listen(port, hostname, () => {
