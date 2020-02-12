@@ -14,7 +14,7 @@ router.post('/login', userController.login);
 
 router.get('/dash', middleware.verifyToken,  postController.getDashboard);
 
-router.get('/post', postController.getAddPost);
+router.get('/post', middleware.verifyToken, postController.getAddPost);
 
 router.post('/post',  middleware.verifyToken, postController.addPost);
 
