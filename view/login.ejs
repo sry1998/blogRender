@@ -10,6 +10,11 @@
         <div class="formreg">
           <form method="post" action="/login">
             <div class="form-head">LOGIN FORM</div>
+            <% if(errormsg) { %>
+              <div class="msg">
+                <span><%= errormsg%></span>
+              </div>
+              <% } %>
             <div class="input-div">
               <input type="email" class="input-text" name="email" placeholder="Enter your email"/>
             </div>
@@ -20,7 +25,7 @@
               <input  name="submit" class="div-btn" type="submit" value="Login"/>
             </div>
             <div class="input-div">
-              <a href="/login" style="text-decoration: none;">Already registered?</a>
+              <a href="/register" style="text-decoration: none;">Already registered?</a>
             </div>
           </form>
         </div>
