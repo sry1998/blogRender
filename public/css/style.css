@@ -28,15 +28,20 @@
 }
 .input-div
 {
-    display: flex;
-    width: 400px;
-    flex-wrap: wrap;
-    height: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: center;
-    
-    
+  display: flex;
+  width: 400px;
+  flex-wrap: wrap;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;    
+}
+
+.msg {
+  display: flex;
+  font-size: 18px;
+  color: red;
+  justify-content: center;
 }
 
 .input-text{
