@@ -31,18 +31,23 @@ exports.login = async function(req, res) {
   try {
     await User.findOne({ email: req.body.email } ,function (err, User) {
       if (err) return res.status(500).send('Error on the server.');
-      if (!User) return res.status(404).send('No user found.');
-      const match = bcrypt.compareSync(req.body.password, User.password);
-      if(match) {
-        const token = jwt.sign({ id: User._id, role: User.role, name: User.name }, config.secret);
-        res.cookie('token',token, {httpOnly: true });
-        res.redirect('/dash');
+      if (!User) {
+        req.flash("errormsg", "No User found");
+        res.redirect('/login');
       }
       else {
-         req.flash("errormsg", "Invalid Email or Password");
-         res.redirect('/login');
+        const match = bcrypt.compareSync(req.body.password, User.password);
+        if(match) {
+          const token = jwt.sign({ id: User._id, role: User.role, name: User.name }, config.secret);
+          res.cookie('token',token, {httpOnly: true });
+          res.redirect('/dash');
+        }
+        else {
+          req.flash("errormsg", "Invalid Email or Password");
+          res.redirect('/login');
+        }
       }
-      });
+    });
   }
   catch (err) {
     res.status(500).send(err);
