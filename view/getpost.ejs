@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="../styledash.css">
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../getpost.css">
+  <title>View Post</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../getpost.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div> <%- include('nav.ejs') %> </div>
-    <div class="home">
-       <div class="viewpost">   
-          <% for(let i = 0; i < post.length; i++) { %>
-            <div class="card">
-              <h2><%= post[i].title %></h2>
-              <p><%= post[i].content %></p>
-            </div>
-          <%}
-          %>
+  <div> <%- include('nav.ejs') %> </div>
+  <div class="container">
+    <% for(let i = 0; i < post.length; i++) { %>
+      <div class="card w-75 ml-auto mr-auto mt-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h2><%= post[i].title %></h2>
+            <p><%= post[i].content %></p>
+          </div>
+        </div>
       </div>
-    </div>
+    <%}
+    %>
+  </div>
+
 </body>
 </html>

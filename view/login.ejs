@@ -2,32 +2,41 @@
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="../style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
-<body> 
+<body>
   <div class="container">
-    <div class="container-form">
-      <div class="formreg">
-        <form method="post" action="/login">
-          <div class="form-head">LOGIN</div>
-          <% if(errormsg) { %>
-            <div class="msg">
-              <span><%= errormsg%></span>
-            </div>
-          <% } %>
-          <div class="input-div">
-            <input type="email" class="input-text" name="email" placeholder="Enter your email"/>
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign In</h5>
+            <% if(errormsg) { %>
+              <div class="msg">
+                <span><%= errormsg%></span>
+              </div>
+            <% } %>
+            <form class="form-signin"method="post" action="/login" >
+              <div class="form-label-group input-title">
+                <input type="email" id="inputEmail" class="form-control input-title" name="email" placeholder="Email address" required autofocus>
+              </div>
+              <div class="form-label-group input-title">
+                <input type="password" id="inputPassword" class="form-control input-title" name="password" placeholder="Password" required>
+              </div>
+              <button class="btn btn-lg btn-block text-uppercase" type="submit">Sign in</button>
+              <hr class="my-4">
+              <div class="input-div">
+                <a href="/register" style="text-decoration: none;">Not a member? Create account </a>
+              </div>
+            </form>
           </div>
-          <div class="input-div">
-            <input type="password" class="input-text"   name="password" placeholder="Enter your password"/>
-          </div>
-          <div class="input-div">
-            <input  name="submit" class="div-btn" type="submit" value="Login"/>
-          </div>
-          <div class="input-div">
-            <a href="/register" style="text-decoration: none;"> Create account </a>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
