@@ -29,20 +29,20 @@ exports.getPost = async function (req, res) {
         res.render('getpost',{post: posts});
       }
       else {
-        res.render('getpost',{post: "Nothing to show"});
+        res.render('getpost',{error: "Nothing to show"});
       }
     }
     else {
-      const posts = await postModel.find({ userid: req.user.id }, { userid: 0, _id: 0});
+      const posts = await postModel.find({ userid: req.user.id }, { _id: 0, userid: 0});
       if(posts) {
         res.render('getpost',{post: posts});
       }
       else {
-        res.render('getpost',{post: "Nothing to show"});
+        res.render('getpost',{error: "Nothing to show"});
       }
       
     }
   } catch (err) {
-    res.status(500).send(err);
+    res.render('getpost',{error: "Something went wrong"});
   }
 }

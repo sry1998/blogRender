@@ -20,7 +20,7 @@ body {
 .successmsg {
   display: flex;
   font-size: 18px;
-  color: rgb(52, 212, 52);
+  color: darkorange;
   justify-content: center;
 }
 
