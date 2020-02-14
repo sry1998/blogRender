@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Registration Form</title>
-	<link rel="stylesheet" href="../style.css" type="text/css">
+	<title>Register</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<div class="container-form" >
-			<div class="formreg" style="height: 500px;">
-				<form name="registration"  method="post" action="/register">
-					<div class="form-head">CREATE ACCOUNT </div>
-					<div class="input-div">
-						<input type="text" class="input-text" name="name" tabindex="1" placeholder="Emter your name"/>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+					<div class="card card-signin flex-row my-5">
+						<div class="card-body">
+							<h5 class="card-title text-center">Register</h5>
+							<form class="form-signin" method="post" action="/register">
+								<div class="form-label-group">
+									<input type="text" id="inputUserame" class="form-control" name="email" placeholder="Name" required autofocus>
+								</div>
+								<div class="form-label-group">
+									<input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required>
+								</div>
+								<div class="form-label-group">
+									<input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+								</div>
+								<div class="form-label-group">
+									<input type="password" id="inputConfirmPassword" class="form-control" name="confirmpassword" placeholder="Password" required>
+								</div>
+								<button class="btn btn-lg btn-block text-uppercase" type="submit">Register</button>
+								<hr class="my-4">
+								<a class="d-block text-center mt-2 small" href="/login">Sign In</a>
+							</form>
+						</div>
 					</div>
-					<div class="input-div">
-						<input type="email" class="input-text" name="email" tabindex="2" placeholder="Email Id"/>
-					</div>
-					<div class="input-div">
-						<input type="password" class="input-text" name="password" tabindex="3" placeholder="Enter your password"/>
-					</div>
-					<div class="input-div">
-							<input type="submit" tabindex="4" class="div-btn" name="submit" value="REGISTER"/>
-					</div>
-					<div class="input-div">
-						<a href="/login" style="text-decoration: none;">Sign in instead</a>
-					</div>
-				</form>		
+				</div>
 			</div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>

@@ -1,41 +1,9 @@
-.container {
-    display:flex;
+body {
+  background: black;
 }
-
-.container-form {
-  display:flex;
-  width:1300px;
-  height:600px;
-  align-items: center;
-  justify-content: center;    
+.input-title {
+  border-radius: 2rem;
 }
-
-.formreg {
-  display: flex;
-  height: 300px;
-  width: 45%;
-  background-color: rgba(49, 45, 45,0.3);
-  border: 1px solid gray;
-  justify-content: center;
-}
-
-.form-head {
-  text-align: center;
-  color:#222222;
-  font-size: 30px;
-  padding-bottom: 10px;
-}
-
-.input-div {
-  display: flex;
-  width: 400px;
-  flex-wrap: wrap;
-  height: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  justify-content: center;    
-}
-
 .msg {
   display: flex;
   font-size: 18px;
@@ -43,23 +11,48 @@
   justify-content: center;
 }
 
-.input-text {
-  width:300px;
-  height:40px;
-  border-radius: 5px;
-  border:2px solid gray;
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
 }
 
-textarea {
-  width:300px;
-  border-radius: 5px;
-  border:2px solid gray;
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
-.div-btn {
-  margin-top: 20px;
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  color: white;
   background-color: darkorange;
-  height: 50px;
-  justify-self: center;
-  width:200px;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
 }
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group input {
+  height: 3rem;
+}
+
