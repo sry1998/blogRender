@@ -26,8 +26,9 @@ exports.getPost = async function (req, res) {
   try {
     if (req.role === "Admin") {
       const posts = await postModel.find();
+      const likes = await likeModel.find({});
       if (posts) {
-        res.render('getpost', { post: posts, user:req.user.id });
+        res.render('getpost', { post: posts, like: likes, user: req.user.id });
       }
       else {
         res.render('getpost', { error: "Nothing to show" });
@@ -35,11 +36,9 @@ exports.getPost = async function (req, res) {
     }
     else {
       const posts = await postModel.find({ userid: req.user.id });
-      const likes = await likeModel.find();
+      const likes = await likeModel.find({});
       if (posts) {
-        let btnval = req.flash('btnvalue') 
-        btnlike = 'Like';
-        res.render('getpost', { post: posts, like: likes, user:req.user});
+        res.render('getpost', { post: posts, like: likes, user: req.user.id });
       }
       else {
         res.render('getpost', { error: "Nothing to show" });
@@ -51,20 +50,24 @@ exports.getPost = async function (req, res) {
 }
 
 exports.getLikes = async function (req, res) {
+  const createLike = new likeModel(req.body);
+  createLike.userid = req.user.id;
   try {
-    if (req.body.like == 'Like') {
-      await likeModel.updateOne({ postid: req.body.id, userid: req.user.id },
-        { $set: { like: true } },
-        { upsert: true });
-      res.redirect('/posts');
+    if (req.body.btnValue == 'Like') {
+      await createLike.save();
+      res.json(createLike);
     }
     else {
-      await likeModel.updateOne({ postid: req.body.id, userid: req.user.id },
-        { $set: { like: false } });
-      res.redirect('/posts');
+      await likeModel.deleteOne({ postid: req.body.postid, userid: req.user.id });
+      const obj = {
+        postid: req.body.postid,
+        userid: req.user.id,
+        status: 'deleted'
+      }
+      res.json(obj);
     }
   }
   catch (err) {
-    res.render('getpost', { error: "Something went wrong" });
+    res.send(err);
   }
 }

@@ -8,10 +8,6 @@ const likeSchema = new mongoose.Schema({
   userid: {
     type: String,
     required: true
-  },
-  like: {
-    type: Boolean,
-    required: true
   }
 })
 

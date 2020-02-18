@@ -15,11 +15,10 @@ const port = 3001;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
-console.log(__dirname + '/public/css' );
 app.set('views', path.join(__dirname, 'view'));
 app.set('view engine', 'ejs');
 
-app.use(express.static(__dirname + '/public/css/'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({
   extended: false
