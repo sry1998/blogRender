@@ -23,12 +23,12 @@
             <% } %>
             <form class="form-signin" method="post" action="/post" >
               <div class="form-label-group">
-                <input type="text" id="inputTitle" class="form-control input-title" name="title" placeholder="Title" required>
+                <input type="text" id="title" class="form-control input-title" name="title" placeholder="Title" required>
               </div>
               <div class="form-label-group">
-                <textarea name="content" rows="10" class="form-control" cols="50" id="inputDesc" placeholder="Description" required></textarea>
+                <textarea name="content" rows="10" class="form-control" cols="50" id="content" placeholder="Description" required></textarea>
               </div>
-              <button class="btn btn-lg btn-block text-uppercase" type="submit">Add Post</button>
+              <button class="btn btn-lg btn-block text-uppercase" id="addpost" type="submit">Add Post</button>
             </form>
           </div>
         </div>

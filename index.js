@@ -13,7 +13,13 @@ const mongoDB = 'mongodb://127.0.0.1/blog_database';
 const hostname = '127.0.0.1';
 const port = 3001;
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, function(err) {
+  if(err) {
+    console.log('Error: Database connection can not established..!');
+  } else {
+    console.log('Database connection established...!')
+  }
+});
 
 app.set('views', path.join(__dirname, 'view'));
 app.set('view engine', 'ejs');
