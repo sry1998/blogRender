@@ -5,6 +5,7 @@ const session = require('express-session');
 const flash = require('req-flash');
 const cookieParser = require("cookie-parser");
 const bodyParser = require('body-parser');
+const expressLayout = require('express-ejs-layouts');
 
 const router = require('./routes/routes');
 
@@ -24,6 +25,7 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }, f
 app.set('views', path.join(__dirname, 'view'));
 app.set('view engine', 'ejs');
 
+app.use(expressLayout)
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({
@@ -36,8 +38,8 @@ app.use(session({
   saveUninitialized: true
   }));
 app.use(flash());
-app.use(router);
+app.use('/users', router);
 
 app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/login`);
+  console.log(`Server running at http://${hostname}:${port}/users/login`);
 })

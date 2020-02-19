@@ -12,16 +12,16 @@ router.get('/login', userController.getLogin);
 
 router.post('/login', userController.login);
 
-router.get('/dash', middleware.verifyToken,  postController.getDashboard);
+router.get('/:id/dash', middleware.verifyToken,  postController.getDashboard);
 
-router.get('/post', middleware.verifyToken, postController.getAddPost);
+router.get('/:id/post', middleware.verifyToken, postController.getAddPost);
 
-router.post('/post',  middleware.verifyToken, postController.addPost);
+router.post('/:id/post',  middleware.verifyToken, postController.addPost);
 
-router.get('/posts', middleware.verifyToken, postController.getPost);
+router.get('/:id/posts', middleware.verifyToken, postController.getPost);
 
-router.post('/like', middleware.verifyToken, postController.getLikes);
+router.post('/:id/posts/:id/like', middleware.verifyToken, postController.getLikes);
 
-router.get('/logout', userController.logout);
+router.get('/:id/logout', userController.logout);
 
 module.exports =  router;     

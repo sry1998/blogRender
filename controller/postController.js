@@ -3,11 +3,11 @@ const likeModel = require('../model/likeModel')
 
 exports.getDashboard = function (req, res) {
   req.flash('info', 'Welcome');
-  res.render('user/dashboard', { name: req.user.name });
+  res.render('user/dashboard', { name: req.user });
 }
 
 exports.getAddPost = function (req, res) {
-  res.render('post/addpost', { msg: req.flash('addPost') });
+  res.render('post/addpost', { msg: req.flash('addPost'), name: req.user });
 }
 
 exports.addPost = async function (req, res) {
@@ -15,11 +15,11 @@ exports.addPost = async function (req, res) {
   createPost.userid = req.user.id;
   try {
     await createPost.save();
-    req.flash('post/addPost', 'Post added successfully!');
-    res.redirect('/post');
   } catch (err) {
     res.status(500).send(err);
   }
+  req.flash('addPost', 'Post added successfully!');
+  res.redirect(`/users/${req.user.id}/post`);
 }
 
 exports.getPost = async function (req, res) {
@@ -28,8 +28,8 @@ exports.getPost = async function (req, res) {
   try {
     if (req.user.role === "Admin") {
       const posts = await postModel.find();
-      const likes = await likeModel.find({});
       if (posts) {
+        const likes = await likeModel.find({});
         for (let i = 0; i < posts.length; i++) {
           const groupByLike = await likeModel.aggregate([
             {
@@ -64,8 +64,9 @@ exports.getPost = async function (req, res) {
         { 
           post: posts, 
           like: likes, 
-          user: req.user.id,
-          likeCount: likecount
+          user: req.user,
+          likeCount: likecount,
+          name: req.user 
         });
       }
       else {
@@ -110,8 +111,9 @@ exports.getPost = async function (req, res) {
         { 
           post: posts, 
           like: likes, 
-          user: req.user.id,
-          likeCount: likecount
+          user: req.user,
+          likeCount: likecount,
+          name: req.user 
         });
       }
       else {

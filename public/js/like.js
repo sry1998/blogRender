@@ -2,7 +2,6 @@ $(document).ready(function() {
   $("button[name=like], button[name=unlike]").click(function (e) {  
     e.preventDefault();
     let id = this.id;
-    const postid = $(`#postid${id}`).val();
     console.log(postid,"post");
     const user = $('#userid').val();
     const btn = $(this).val();
@@ -10,10 +9,9 @@ $(document).ready(function() {
     console.log(count);
     console.log(btn)
     if(id !== '') {
-
       $.ajax({
         type: 'POST',
-        url: '/like',
+        url: `/users/${user}/posts/${id}/like`,
         dataType: 'json',
         data: {postid: id, btnValue: btn},
         success: function(data) {

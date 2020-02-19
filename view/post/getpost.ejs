@@ -1,57 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="/css/getpost.css" type="text/css">
 
-<head>
-  <title>View Post</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/getpost.css" type="text/css">
-  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-  crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-  <div> <%- include('../nav.ejs') %> </div>
-  <div class="container">
-    <% let flag = false;
+<div class="container">
+  <% let flag = false;
     for(let i = 0; i < post.length; i++) { %>
-    <div class="card w-75 ml-auto mr-auto mt-4">
-      <div class="card bg-dark text-white">
-        <div class="card-body">
-          <h2><%= post[i].title %></h2>
-          <p><%= post[i].content %></p>
-          <form>
-            <input type="hidden" name="postid" value="<%= post[i]._id %>" />
-            <input type="hidden" id="userid" name="userid" value="<%= user %>" />
-            <%if(like.length) { 
+  <div class="card w-75 ml-auto mr-auto mt-4">
+    <div class="card bg-dark text-white">
+      <div class="card-body">
+        <h2><%= post[i].title %></h2>
+        <p><%= post[i].content %></p>
+        <form>
+          <input type="hidden" name="postid" value="<%= post[i]._id %>" />
+          <input type="hidden" id="userid" name="userid" value="<%= user.id %>" />
+          <%if(like.length) { 
               let flag =false; 
               like.some((ele) => {
-                if(ele.postid == post[i]._id && ele.userid == user ) {
+                if(ele.postid == post[i]._id && ele.userid == user.id ) {
                    flag=true;
                 } 
               });
               if(flag) { %>
-                <button id="<%= post[i]._id%>" name="unlike" value="Unlike" type="submit">Unlike</button>
-                <span id="count<%= post[i]._id%>"><%= likeCount[i].count %></span>
-              <% }
+          <button id="<%= post[i]._id%>" name="unlike" value="Unlike" type="submit">Unlike</button>
+          <span id="count<%= post[i]._id%>"><%= likeCount[i].count %></span>
+          <% }
               else { %>
-                <button id="<%= post[i]._id%>" name="like" value="Like" type="submit">Like</button>
-                <span id="count<%= post[i]._id%>"><%= likeCount[i].count %></span>
-              <% } 
+          <button id="<%= post[i]._id%>" name="like" value="Like" type="submit">Like</button>
+          <span id="count<%= post[i]._id%>"><%= likeCount[i].count %></span>
+          <% } 
             }
             else {%>
-             <button id="<%= post[i]._id%>" name="like" value="Like" type="submit">Like</button>
-             <span id="count<%= post[i]._id%>"><%= likeCount[i].count %></span>
-            <% } %>
-            </form>           
-        </div>
+          <button id="<%= post[i]._id%>" name="like" value="Like" type="submit">Like</button>
+          <span id="count<%= post[i]._id%>"><%= likeCount[i].count %></span>
+          <% } %>
+        </form>
       </div>
     </div>
-    <% } %>
   </div>
-<script  src="/js/like.js"></script>
-</body>
-</html>
+  <% } %>
+</div>
+<script src="/js/like.js"></script>

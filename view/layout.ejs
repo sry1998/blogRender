@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/nav.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -12,7 +13,9 @@
 
 </head>
 <body>
-  <!-- Navigation -->
+<!-- Navigation Start -->
+<% if (name !== undefined) { %>
+
 <nav class="navbar navbar-expand-lg navbar-dark static-top bg-color">
   <div class="container">
     <a class="navbar-brand" href="#home">Blog </a>
@@ -21,22 +24,27 @@
       </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/<%= %>/"> Home </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="/post">AddPost</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="/posts">ViewPost</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="/logout">Logout</a>
-        </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/users/<%= name.id %>/dash"> Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/users/<%= name.id %>/post">AddPost</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/users/<%= name.id %>/posts">ViewPost</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/users/<%= name.id %>/logout">Logout</a>
+          </li>        
       </ul>
     </div>
   </div>
 </nav>
+        <% } %>
+
+<!-- Navigation Complete-->
+<%- body%>
+
 </body>
 
 </html>

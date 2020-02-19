@@ -3,7 +3,7 @@ const User = require('../model/userModel');
 const config = require('../config');
 
 exports.getRegister = function (req, res) {
-  res.render('user/register');
+  res.render('user/register', { name: req.User });
 }
 
 exports.register = async function (req, res) { 
@@ -13,7 +13,7 @@ exports.register = async function (req, res) {
     await createUser.save();
     const token = jwt.sign({ id: createUser._id, role: createUser.role, name: createUser.name }, config.secret);
     res.cookie('token',token, {httpOnly: true });
-    res.redirect('/dash');
+    res.redirect(`/users/${createUser._id}/dash`);
   } 
   catch (err) { 
     res.status(500).send(err);
@@ -21,27 +21,21 @@ exports.register = async function (req, res) {
 }
 
 exports.getLogin = function (req, res) {
-  res.render('user/login', { errormsg: req.flash('errormsg') });
+  res.render('user/login', { errormsg: req.flash('errormsg'), name: req.User });
 }
 
 exports.login = async function(req, res) {
   try {
     await User.findOne({ email: req.body.email, password: req.body.password } ,function (err, User) {
       if (err) return res.status(500).send('Error on the server.');
-      if (!User) {
-        req.flash("errormsg", "No User found");
-        res.redirect('/login');
-      }
-      else {
-        if(req.body.email == User.email && req.body.password == User.password) {
+      if(req.body.email == User.email && req.body.password == User.password) {
           const token = jwt.sign({ id: User._id, role: User.role, name: User.name }, config.secret);
           res.cookie('token',token, {httpOnly: true });
-          res.redirect('/dash');
-        }
-        else {
-          req.flash("errormsg", "Invalid Email or Password");
-          res.redirect('/login');
-        }
+          res.redirect(`/users/${User._id}/dash`);
+      }
+      else {
+        req.flash("errormsg", "Invalid Email or Password");
+        res.redirect(`/users/login`);
       }
     });
   }
@@ -51,5 +45,5 @@ exports.login = async function(req, res) {
 };
 
 exports.logout = function(req, res) {
-  res.clearCookie('token').redirect('/login');
+  res.clearCookie('token').redirect('/users/login');
 }
