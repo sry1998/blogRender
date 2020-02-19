@@ -3,11 +3,11 @@ const likeModel = require('../model/likeModel')
 
 exports.getDashboard = function (req, res) {
   req.flash('info', 'Welcome');
-  res.render('dashboard', { name: req.user.name });
+  res.render('user/dashboard', { name: req.user.name });
 }
 
 exports.getAddPost = function (req, res) {
-  res.render('addpost', { msg: req.flash('addPost') });
+  res.render('post/addpost', { msg: req.flash('addPost') });
 }
 
 exports.addPost = async function (req, res) {
@@ -15,7 +15,7 @@ exports.addPost = async function (req, res) {
   createPost.userid = req.user.id;
   try {
     await createPost.save();
-    req.flash('addPost', 'Post added successfully!');
+    req.flash('post/addPost', 'Post added successfully!');
     res.redirect('/post');
   } catch (err) {
     res.status(500).send(err);
@@ -23,29 +23,103 @@ exports.addPost = async function (req, res) {
 }
 
 exports.getPost = async function (req, res) {
+  let likecount = [];
+  let obj = {};
   try {
-    if (req.role === "Admin") {
+    if (req.user.role === "Admin") {
       const posts = await postModel.find();
       const likes = await likeModel.find({});
       if (posts) {
-        res.render('getpost', { post: posts, like: likes, user: req.user.id });
+        for (let i = 0; i < posts.length; i++) {
+          const groupByLike = await likeModel.aggregate([
+            {
+              "$match":
+              {
+                postid: {
+                  $eq: "" + posts[i]._id
+                }
+              }
+            },
+            {
+              $group:
+              {
+                _id: posts[i]._id,
+                count: { $sum: 1}
+              }
+            }
+          ]);
+          obj = {
+            _id: posts[i]._id,
+            count: 0
+          }
+          if(groupByLike.length){
+            likecount.push(groupByLike);
+          }
+          else{
+            likecount.push(obj);
+          }
+        }    
+        likecount = likecount.flat();  
+        res.render('post/getpost', 
+        { 
+          post: posts, 
+          like: likes, 
+          user: req.user.id,
+          likeCount: likecount
+        });
       }
       else {
-        res.render('getpost', { error: "Nothing to show" });
+        res.render('post/getpost', { error: "Nothing to show" });
       }
     }
     else {
       const posts = await postModel.find({ userid: req.user.id });
       const likes = await likeModel.find({});
       if (posts) {
-        res.render('getpost', { post: posts, like: likes, user: req.user.id });
+        for (let i = 0; i < posts.length; i++) {
+          const groupByLike = await likeModel.aggregate([
+            {
+              "$match":
+              {
+                postid: {
+                  $eq: "" + posts[i]._id
+                }
+              }
+            },
+            {
+              $group:
+              {
+                _id: posts[i]._id,
+                count: { $sum: 1}
+              }
+            }
+          ]);
+          obj = {
+            _id: posts[i]._id,
+            count: 0
+          }
+          if(groupByLike.length){
+            likecount.push(groupByLike);
+          }
+          else{
+            likecount.push(obj);
+          }
+        }    
+        likecount = likecount.flat();  
+        res.render('post/getpost', 
+        { 
+          post: posts, 
+          like: likes, 
+          user: req.user.id,
+          likeCount: likecount
+        });
       }
       else {
-        res.render('getpost', { error: "Nothing to show" });
+        res.render('post/getpost', { error: "Nothing to show" });
       }
     }
   } catch (err) {
-    res.render('getpost', { error: "Something went wrong" });
+    res.render('post/getpost', { error: "Something went wrong" });
   }
 }
 

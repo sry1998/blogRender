@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 
 exports.verifyToken = function(req, res, next) {
-  console.log(req.cookies.token);
   const token = req.cookies.token;
   if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
 
